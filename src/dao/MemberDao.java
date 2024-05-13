@@ -30,7 +30,6 @@ public class MemberDao {
 	}
 	
 	
-	
 	public Map<String, Object> login(List <Object> param) {
 		
 		String sql = "SELECT MEM_NAME \r\n" + 
