@@ -85,11 +85,7 @@ public class MainController extends Print {
 	
 	public View login() {
 		if (debug) System.out.println("============== 1. 로그인 ==============");
-		
-		System.out.println("1. 로그인");
-		System.out.println("2. 아이디 찾기");
-		System.out.println("3. 비밀번호 찾기");
-		System.out.println("4. 회원정보 수정");
+		printLogin();
 		
 		int sel = ScanUtil.menu();
 		if (sel == 1) {
@@ -171,9 +167,9 @@ public class MainController extends Print {
 	
 	
 	private View home() {
+		printMain();
 		if (debug) System.out.println("============== 홈 ==============");
-		System.out.println("1. 로그인");
-		System.out.println("2. 회원가입");
+		printHome();
 		
 		int sel = ScanUtil.menu();
 		if (sel == 1)  return View.LOGIN;
@@ -181,5 +177,7 @@ public class MainController extends Print {
 		else if (sel == 0) return View.ADMIN;
 		else return View.HOME;
 	}
+	
+	
 
 }
