@@ -22,45 +22,16 @@ public class MemberDao {
 	
 	JDBCUtil jdbc = JDBCUtil.getInstance();
 	
-	public void sign(List<Object> param) {
-		String sql = "INSERT INTO MEMBER\r\n" + 
-				"VALUES ((SELECT NVL(MAX(MEM_NO),0) + 1 FROM MEMBER), ?, ?, ?, ?, ?, ?, 'N')";
-		
-		jdbc.update(sql, param);
-	}
-	
-	
 	public Map<String, Object> login(List <Object> param) {
 		
-		String sql = "SELECT MEM_NAME \r\n" + 
-					 "FROM MEMBER \r\n" + 
-					 "WHERE MEM_ID = ?\r\n" + 
-					 "AND MEM_PW = ?";	 
+		String sql = "SELECT MEM_ID\r\n"
+				+ "FROM MEMBER\r\n"
+				+ "WHERE MEM_ID = ? \r\n"
+				+ "      AND MEM_PW = ? \r\n"
+				+ "      AND MEM_DELYN = 'N' \r\n"
+				+ "      AND MEM_GU = ?\r\n";
 		
 		return jdbc.selectOne(sql, param);
 		
 	}
-	
-	public Map<String, Object> sindId(List<Object> param) {
-		String sql = "SELECT MEM_ID\r\n" + 
-				 "FROM MEMBER \r\n" + 
-				 "WHERE MEM_NAME = ?\r\n" + 
-				 "AND MEM_EMAIL = ?";	 
-		return jdbc.selectOne(sql, param);
-	}
-	
-	
-	public Map<String, Object> sindPw(List<Object> param) {
-		String sql = "SELECT MEM_PW\r\n" + 
-				 "FROM MEMBER \r\n" + 
-				 "WHERE MEM_ID = ?\r\n" + 
-				 "AND MEM_EMAIL = ?";	 
-		return jdbc.selectOne(sql, param);
-	}
-
-	public Map<String, Object> modifyMember(List<Object> param) {
-		String sql = " ";	 
-		return jdbc.selectOne(sql, param);
-	}
-
 }
